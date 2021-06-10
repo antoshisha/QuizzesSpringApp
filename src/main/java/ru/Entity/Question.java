@@ -6,14 +6,14 @@ public class Question {
     int id;
     String name;
     QuestionType questionType;
-    List<AnswerForQuestion> answerForQuestionList;
+    List<QuestionOption> questionOptions;
 
 
-    public Question(int id, String name, QuestionType questionType, List<AnswerForQuestion> answerForQuestionList) {
+    public Question(int id, String name, QuestionType questionType, List<QuestionOption> questionOptions) {
         this.id = id;
         this.name = name;
         this.questionType = questionType;
-        this.answerForQuestionList = answerForQuestionList;
+        this.questionOptions = questionOptions;
     }
 
     public Question(int id, String name, QuestionType questionType) {
@@ -46,11 +46,11 @@ public class Question {
         this.questionType = questionType;
     }
 
-    public List<AnswerForQuestion> getAnswerForQuestionList() {
-        return answerForQuestionList;
+    public List<QuestionOption> getAnswerForQuestionList() {
+        return questionOptions;
     }
 
-    public void setAnswerForQuestionList(List<AnswerForQuestion> answerForQuestionList) {
-        this.answerForQuestionList = answerForQuestionList;
+    public void setAnswerForQuestionList(List<QuestionOption> questionOptions) {
+        this.questionOptions = questionOptions;
     }
 }

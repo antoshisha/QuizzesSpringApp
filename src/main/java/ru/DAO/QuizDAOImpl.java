@@ -11,15 +11,13 @@ import java.util.List;
 @Component
 public class QuizDAOImpl implements QuizDAO {
     private final ConnectionDB connectionDB;
-    private final QuestionDAOImpl questionDAO;
 
-    public QuizDAOImpl(ConnectionDB connectionDB, QuestionDAOImpl questionDAO) {
+    public QuizDAOImpl(ConnectionDB connectionDB) {
         this.connectionDB = connectionDB;
-        this.questionDAO = questionDAO;
     }
 
     @Override
-    public void addQuiz(Quiz quiz) {
+    public void createQuiz(Quiz quiz) {
         Connection conn = connectionDB.getConnection();
         try{
             PreparedStatement preparedStatement = conn.prepareStatement(
@@ -45,16 +43,25 @@ public class QuizDAOImpl implements QuizDAO {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        List<Question> questionList = quiz.getQuestionList();
-        for (Question x : questionList) {
-            questionDAO.addQuestion(x, quiz.getId());
-        }
-
     }
 
     @Override
     public void updateQuiz(Quiz quiz) {
-
+        Connection connection = connectionDB.getConnection();
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement("UPDATE quiz SET id= ?, name= ?, start= ?, finish= ?, description= ?) ")
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+            try {
+                connection.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }try {
+            connection.close();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
     }
 
     @Override

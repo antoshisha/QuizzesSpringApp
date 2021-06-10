@@ -6,8 +6,8 @@ public class UserAnswer {
     int id;
     String text;
     QuestionType questionType;
-    AnswerForQuestion answerForQuestion;
-    List<AnswerForQuestion> answerForQuestionList;
+    QuestionOption questionOption;
+    List<QuestionOption> questionOptions;
 
     public UserAnswer(int id, String text, QuestionType questionType) {
         this.id = id;
@@ -15,15 +15,17 @@ public class UserAnswer {
         this.questionType = questionType;
     }
 
-    public UserAnswer(int id, QuestionType questionType, AnswerForQuestion answerForQuestion) {
+    public UserAnswer(int id, String text, QuestionType questionType, QuestionOption questionOption) {
         this.id = id;
+        this.text = text;
         this.questionType = questionType;
-        this.answerForQuestion = answerForQuestion;
+        this.questionOption = questionOption;
     }
 
-    public UserAnswer(int id, QuestionType questionType, List<AnswerForQuestion> answerForQuestionList) {
+    public UserAnswer(int id, String text, QuestionType questionType, List<QuestionOption> questionOptions) {
         this.id = id;
+        this.text = text;
         this.questionType = questionType;
-        this.answerForQuestionList = answerForQuestionList;
+        this.questionOptions = questionOptions;
     }
 }

@@ -15,37 +15,28 @@ public class QuestionDAOImpl implements QuestionDAO {
     }
 
     @Override
-    public void addQuestion(Question question, int quizId) {
+    public void createQuestion(Question question, int quizId) {
         Connection conn = connectionDB.getConnection();
         try{
-            if (question.getAnswerForQuestionList() == null) {
-                PreparedStatement preparedStatement = conn.prepareStatement(
-                        "INSERT INTO " + "question (id, name, quiz_id, type) VALUES (?,?,?,?)");
-                preparedStatement.setInt(1, question.getId());
-                preparedStatement.setString(2, question.getName());
-                preparedStatement.setInt(3, quizId);
-                preparedStatement.setString(4, question.getQuestionType().toString());
-                preparedStatement.executeUpdate();
-            } else {
-                PreparedStatement preparedStatement = conn.prepareStatement(
-                        "INSERT INTO " + "question (id, name, quiz_id, type) VALUES (?,?,?,?)");
-                preparedStatement.setInt(1, question.getId());
-                preparedStatement.setString(2, question.getName());
-                preparedStatement.setInt(3, quizId);
-                preparedStatement.setString(4, question.getQuestionType().toString());
-                preparedStatement.executeUpdate();
-            }
+            PreparedStatement preparedStatement = conn.prepareStatement(
+                    "INSERT INTO " + "question (id, name, quiz_id, type) VALUES (?,?,?,?)");
+            preparedStatement.setInt(1, question.getId());
+            preparedStatement.setString(2, question.getName());
+            preparedStatement.setInt(3, quizId);
+            preparedStatement.setString(4, question.getQuestionType().toString());
+            preparedStatement.executeUpdate();
+
         } catch (SQLException throwables) {
             throwables.printStackTrace();
             try {
-                connection.close();
+                conn.close();
                 System.out.println("----INSERT QUERY IS NOT APPLIED---");
             } catch (SQLException e) {
                 e.printStackTrace();
             }
         }
         try {
-            connection.close();
+            conn.close();
             System.out.println("----INSERT QUERY IS SUCCESSFUL---");
         } catch (SQLException e) {
             e.printStackTrace();
