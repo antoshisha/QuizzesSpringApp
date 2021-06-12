@@ -10,5 +10,5 @@ public interface QuizDAO {
     void updateQuiz(Quiz quiz);
     void deleteQuiz(int id);
     List<Quiz> getAll();
-    Quiz getForId( int userId);
+    List<Quiz> getQuizForUserId( int userId);
 }

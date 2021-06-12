@@ -3,29 +3,57 @@ package ru.Entity;
 import java.util.List;
 
 public class UserAnswer {
-    int id;
+    int userAnswerId;
+    int userId;
+    int questionId;
     String text;
-    QuestionType questionType;
-    QuestionOption questionOption;
-    List<QuestionOption> questionOptions;
+    int questionOptionId;
 
-    public UserAnswer(int id, String text, QuestionType questionType) {
-        this.id = id;
+    public UserAnswer(int userAnswerId, int userId, int questionId, String text, int questionOptionId) {
+        this.userAnswerId = userAnswerId;
+        this.userId = userId;
+        this.questionId = questionId;
         this.text = text;
-        this.questionType = questionType;
+        this.questionOptionId = questionOptionId;
     }
 
-    public UserAnswer(int id, String text, QuestionType questionType, QuestionOption questionOption) {
-        this.id = id;
-        this.text = text;
-        this.questionType = questionType;
-        this.questionOption = questionOption;
+    public int getUserAnswerId() {
+        return userAnswerId;
     }
 
-    public UserAnswer(int id, String text, QuestionType questionType, List<QuestionOption> questionOptions) {
-        this.id = id;
+    public void setUserAnswerId(int userAnswerId) {
+        this.userAnswerId = userAnswerId;
+    }
+
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
+
+    public int getQuestionId() {
+        return questionId;
+    }
+
+    public void setQuestionId(int questionId) {
+        this.questionId = questionId;
+    }
+
+    public String getText() {
+        return text;
+    }
+
+    public void setText(String text) {
         this.text = text;
-        this.questionType = questionType;
-        this.questionOptions = questionOptions;
+    }
+
+    public int getQuestionOptionId() {
+        return questionOptionId;
+    }
+
+    public void setQuestionOptionId(int questionOptionId) {
+        this.questionOptionId = questionOptionId;
     }
 }

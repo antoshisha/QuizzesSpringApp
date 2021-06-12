@@ -11,14 +11,15 @@ public class Quiz {
     String description;
     List<Question> questionList;
 
-    public Quiz(int id, String name, Date startDate, Date finishDate, String description, List<Question> questionList) {
+    public Quiz(int id, String name, Date startDate, Date finishDate, String description) {
         this.id = id;
         this.name = name;
         this.startDate = startDate;
         this.finishDate = finishDate;
         this.description = description;
-        this.questionList = questionList;
+
     }
+
 
     public int getId() {
         return id;

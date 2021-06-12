@@ -32,11 +32,49 @@ public class QuestionOptionDAOImpl implements QuestionOptionDAO{
 
     @Override
     public void updateQuestionOption(QuestionOption questionOption) {
-
+        Connection connection = connectionDB.getConnection();
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(
+                    "UPDATE answer_option SET question_id= ?, option= ? WHERE id= ?");
+            preparedStatement.setInt(1, questionOption.getQuestionId());
+            preparedStatement.setString(2, questionOption.getOption());
+            preparedStatement.setInt(3, questionOption.getId());
+            preparedStatement.executeUpdate();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+            try {
+                connection.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        try {
+            connection.close();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
     }
 
     @Override
-    public void deleteQuestion(int questionOptionId) {
-
+    public void deleteQuestionOption(int questionOptionId) {
+        Connection connection = connectionDB.getConnection();
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(
+                    "DELETE FROM answer_option WHERE id= ?");
+            preparedStatement.setInt(1, questionOptionId);
+            preparedStatement.executeUpdate();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+            try {
+                connection.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        try {
+            connection.close();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
     }
 }
