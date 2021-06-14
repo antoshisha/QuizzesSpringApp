@@ -20,6 +20,14 @@ public class Quiz {
 
     }
 
+    public Quiz(int id, String name, Date startDate, Date finishDate, String description, List<Question> questionList) {
+        this.id = id;
+        this.name = name;
+        this.startDate = startDate;
+        this.finishDate = finishDate;
+        this.description = description;
+        this.questionList = questionList;
+    }
 
     public int getId() {
         return id;

@@ -6,14 +6,15 @@ import ru.Entity.Question;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.sql.Statement;
 
 @Component
 public class QuestionDAOImpl implements QuestionDAO {
     private final ConnectionDB connectionDB;
+    private final QuestionOptionDAO questionOptionDAO;
 
-    public QuestionDAOImpl(ConnectionDB connectionDB) {
+    public QuestionDAOImpl(ConnectionDB connectionDB, QuestionOptionDAO questionOptionDAO) {
         this.connectionDB = connectionDB;
+        this.questionOptionDAO = questionOptionDAO;
     }
 
     @Override
@@ -91,5 +92,6 @@ public class QuestionDAOImpl implements QuestionDAO {
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
+
     }
 }
