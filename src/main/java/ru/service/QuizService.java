@@ -1,12 +1,12 @@
-package ru.Services;
+package ru.service;
 
 import org.springframework.stereotype.Component;
-import ru.DAO.QuestionDAOImpl;
-import ru.DAO.QuestionOptionDAOImpl;
-import ru.DAO.QuizDAOImpl;
-import ru.Entity.Question;
-import ru.Entity.QuestionOption;
-import ru.Entity.Quiz;
+import ru.dao.QuestionDAOImpl;
+import ru.dao.QuestionOptionDAOImpl;
+import ru.dao.QuizDAOImpl;
+import ru.entity.Question;
+import ru.entity.QuestionOption;
+import ru.entity.Quiz;
 
 import java.util.List;
 
@@ -39,6 +39,7 @@ public class QuizService {
         quizDAO.updateQuiz(quiz);
         List<Question> questionList = quiz.getQuestionList();
         for (Question x : questionList) {
+            if (x.getId() != null)
             questionDAO.updateQuestion(x, quiz.getId());
             List<QuestionOption> questionOptionList = x.getAnswerForQuestionList();
             for (QuestionOption z : questionOptionList) {
@@ -46,9 +47,14 @@ public class QuizService {
             }
         }
     }
-    public void deleteQuiz(int quizUd) {
-        quizDAO.deleteQuiz(quizUd);
-        questionDAO.deleteQuestion();
+    public void deleteQuiz(int quizId) {
+        quizDAO.deleteQuiz(quizId);
+        questionDAO.deleteQuestionByQuizId(quizId);
+
+    }
+
+    public List<Quiz> getAll() {
+        return quizDAO.getAll();
     }
 
 

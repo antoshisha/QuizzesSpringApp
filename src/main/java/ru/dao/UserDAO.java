@@ -1,6 +1,6 @@
-package ru.DAO;
+package ru.dao;
 
-import ru.Entity.User;
+import ru.entity.User;
 
 public interface UserDAO {
     void createUser(User user);

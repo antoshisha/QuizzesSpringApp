@@ -1,8 +1,7 @@
-package ru.DAO;
+package ru.dao;
 
 import org.springframework.stereotype.Component;
-import ru.Entity.Question;
-import ru.Entity.Quiz;
+import ru.entity.Quiz;
 
 import java.sql.*;
 import java.util.ArrayList;

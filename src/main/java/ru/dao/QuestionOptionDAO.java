@@ -1,6 +1,6 @@
-package ru.DAO;
+package ru.dao;
 
-import ru.Entity.QuestionOption;
+import ru.entity.QuestionOption;
 
 public interface QuestionOptionDAO {
     void createQuestionOption(QuestionOption questionOption);

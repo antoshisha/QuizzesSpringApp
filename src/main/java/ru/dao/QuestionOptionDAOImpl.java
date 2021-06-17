@@ -1,7 +1,7 @@
-package ru.DAO;
+package ru.dao;
 
 import org.springframework.stereotype.Component;
-import ru.Entity.QuestionOption;
+import ru.entity.QuestionOption;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

@@ -1,7 +1,7 @@
-package ru.DAO;
+package ru.dao;
 
 
-import ru.Entity.Quiz;
+import ru.entity.Quiz;
 
 import java.util.List;
 

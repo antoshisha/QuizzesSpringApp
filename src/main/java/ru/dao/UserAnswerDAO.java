@@ -1,6 +1,6 @@
-package ru.DAO;
+package ru.dao;
 
-import ru.Entity.UserAnswer;
+import ru.entity.UserAnswer;
 
 public interface UserAnswerDAO {
     void createUserAnswer(UserAnswer userAnswer);

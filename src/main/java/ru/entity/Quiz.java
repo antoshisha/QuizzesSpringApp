@@ -1,4 +1,4 @@
-package ru.Entity;
+package ru.entity;
 
 import java.sql.Date;
 import java.util.List;

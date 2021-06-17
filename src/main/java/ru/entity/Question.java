@@ -1,4 +1,4 @@
-package ru.Entity;
+package ru.entity;
 
 import java.util.List;
 
@@ -20,6 +20,9 @@ public class Question {
         this.id = id;
         this.name = name;
         this.questionType = questionType;
+    }
+    public Question () {
+
     }
 
     public int getId() {

@@ -1,7 +1,7 @@
-package ru.DAO;
+package ru.dao;
 
 import org.springframework.stereotype.Component;
-import ru.Entity.Question;
+import ru.entity.Question;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -94,4 +94,28 @@ public class QuestionDAOImpl implements QuestionDAO {
         }
 
     }
+
+    @Override
+    public void deleteQuestionByQuizId(int quizId) {
+        Connection connection = connectionDB.getConnection();
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement("DELETE FROM question WHERE quiz_id = ?");
+            preparedStatement.setInt(1, quizId);
+            preparedStatement.executeUpdate();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+            try {
+                connection.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        try {
+            connection.close();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+    }
+
+
 }

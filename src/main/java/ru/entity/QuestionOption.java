@@ -1,4 +1,4 @@
-package ru.Entity;
+package ru.entity;
 
 public class QuestionOption {
     int id;

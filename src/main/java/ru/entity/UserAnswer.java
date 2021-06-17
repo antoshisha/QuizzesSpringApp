@@ -1,6 +1,7 @@
-package ru.Entity;
+package ru.entity;
 
-import java.util.List;
+import org.springframework.stereotype.Component;
+
 
 public class UserAnswer {
     int userAnswerId;
