@@ -19,12 +19,12 @@ public class QuizDAOImpl implements QuizDAO {
         Connection conn = connectionDB.getConnection();
         try{
             PreparedStatement preparedStatement = conn.prepareStatement(
-                    "INSERT INTO " + "quiz (id, name, start, finish, description) VALUES (?,?,?,?,?)");
-            preparedStatement.setInt(1, quiz.getId());
-            preparedStatement.setString(2, quiz.getName());
-            preparedStatement.setDate(3, quiz.getStartDate());
-            preparedStatement.setDate(4, quiz.getFinishDate());
-            preparedStatement.setString(5, quiz.getDescription());
+                    "INSERT INTO " + "quiz (name, start, finish, description) VALUES (?,?,?,?)");
+            //preparedStatement.setInt(1, quiz.getId());
+            preparedStatement.setString(1, quiz.getName());
+            preparedStatement.setDate(2, quiz.getStartDate());
+            preparedStatement.setDate(3, quiz.getFinishDate());
+            preparedStatement.setString(4, quiz.getDescription());
             preparedStatement.executeUpdate();
         } catch (SQLException throwable) {
             throwable.printStackTrace();

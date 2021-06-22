@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Index</title>
+</head>
+<body>
+
+<div th:each="quiz : ${quizzes}">
+    <a
+       th:text="${'Quiz id: ' + quiz.id + ', start date is: ' + quiz.startDate + ', Quiz name: ' + quiz.name + ', Quiz description: ' + quiz.description}">user</a>
+</div>
+
+<br/>
+<hr/>
+
+
+</body>
+</html>

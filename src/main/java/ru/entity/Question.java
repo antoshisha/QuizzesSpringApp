@@ -3,7 +3,7 @@ package ru.entity;
 import java.util.List;
 
 public class Question {
-    int id;
+    Integer id;
     String name;
     QuestionType questionType;
     List<QuestionOption> questionOptions;
@@ -25,7 +25,7 @@ public class Question {
 
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 

@@ -11,7 +11,7 @@ public class QuestionOption {
         this.option = option;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 

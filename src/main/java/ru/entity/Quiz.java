@@ -29,6 +29,10 @@ public class Quiz {
         this.questionList = questionList;
     }
 
+    public Quiz() {
+
+    }
+
     public int getId() {
         return id;
     }

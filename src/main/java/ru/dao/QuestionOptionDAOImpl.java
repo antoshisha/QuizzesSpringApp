@@ -6,6 +6,7 @@ import ru.entity.QuestionOption;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.List;
 
 @Component
 public class QuestionOptionDAOImpl implements QuestionOptionDAO{
@@ -63,6 +64,88 @@ public class QuestionOptionDAOImpl implements QuestionOptionDAO{
                     "DELETE FROM answer_option WHERE id= ?");
             preparedStatement.setInt(1, questionOptionId);
             preparedStatement.executeUpdate();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+            try {
+                connection.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        try {
+            connection.close();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+    }
+
+    @Override
+    public void batchCreateQuestionOptions(List<QuestionOption> questionOptionList) {
+        Connection conn = connectionDB.getConnection();
+        try {
+            PreparedStatement preparedStatement = conn.prepareStatement(
+                    "INSERT INTO answer_option (id, question_id, option) VALUES (?,?,?)");
+            for (QuestionOption questionOption : questionOptionList) {
+                preparedStatement.setInt(1, questionOption.getId());
+                preparedStatement.setInt(2, questionOption.getQuestionId());
+                preparedStatement.setString(3, questionOption.getOption());
+                preparedStatement.addBatch();
+            }
+            preparedStatement.executeBatch();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+            try {
+                conn.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        try {
+            conn.close();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+
+    }
+
+    @Override
+    public void batchUpdateQuestionOptions(List<QuestionOption> questionOptionList) {
+        Connection connection = connectionDB.getConnection();
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(
+                    "UPDATE answer_option SET question_id= ?, option= ? WHERE id= ?");
+            for (QuestionOption questionOption : questionOptionList) {
+                preparedStatement.setInt(1, questionOption.getQuestionId());
+                preparedStatement.setString(2, questionOption.getOption());
+                preparedStatement.setInt(3, questionOption.getId());
+                preparedStatement.addBatch();
+            }
+            preparedStatement.executeBatch();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+            try {
+                connection.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        try {
+            connection.close();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+    }
+
+    @Override
+    public void batchDeleteQuestionOptions(List<QuestionOption> questionOptionList) {
+        Connection connection = connectionDB.getConnection();
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(
+                    "DELETE FROM answer_option WHERE id= ?");
+            for (QuestionOption questionOption : questionOptionList) {
+                preparedStatement.setInt(1, questionOption.getId());
+                preparedStatement.addBatch();
+            }
         } catch (SQLException throwables) {
             throwables.printStackTrace();
             try {
