@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Home Page QuizApp</title>
+</head>
+<body>
+ Choose your action:
+ ----------------------
+<div>
+    <a th:href="@{/quizzes/createQuiz}"> CREATE QUIZ </a> or <a th:href="@{/}">UPDATE QUIZ</a> or <a th:href="@{/quizzes/deleteQuiz}">DELETE QUIZ</a>
+</div>
+</body>
+</html>
