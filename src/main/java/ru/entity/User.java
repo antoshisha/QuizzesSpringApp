@@ -9,6 +9,10 @@ public class User {
         this.isAnonymous = isAnonymous;
     }
 
+    public User() {
+
+    }
+
     public int getId() {
         return id;
     }

@@ -11,6 +11,10 @@ public class QuestionOption {
         this.option = option;
     }
 
+    public QuestionOption() {
+
+    }
+
     public Integer getId() {
         return id;
     }

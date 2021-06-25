@@ -1,5 +1,6 @@
 package ru.service;
 
+import org.springframework.stereotype.Component;
 import ru.dao.QuestionDAOImpl;
 import ru.dao.QuestionOptionDAOImpl;
 import ru.entity.Question;
@@ -7,7 +8,7 @@ import ru.entity.QuestionOption;
 
 import java.util.ArrayList;
 import java.util.List;
-
+@Component
 public class QuestionService {
     private final QuestionDAOImpl questionDAO;
     private final QuestionOptionDAOImpl questionOptionDAO;
@@ -19,14 +20,14 @@ public class QuestionService {
 
     public void createQuestion(Question question, int quizId) {
         questionDAO.createQuestion(question, quizId);
-        List<QuestionOption> questionOptions = question.getAnswerForQuestionList();
+        List<QuestionOption> questionOptions = question.getQuestionOptions();
         questionOptionDAO.batchCreateQuestionOptions(questionOptions);
     }
 
     public void updateQuestion(Question question, int quizId) {
         questionDAO.updateQuestion(question, quizId);
 
-        List<QuestionOption> questionOptionList = question.getAnswerForQuestionList();
+        List<QuestionOption> questionOptionList = question.getQuestionOptions();
         List<QuestionOption> createQuestionOptions = new ArrayList<>();
         List<QuestionOption> updateQuestionOptions = new ArrayList<>();
 
@@ -47,5 +48,9 @@ public class QuestionService {
 
     public void deleteQuestion(int id) {
         questionDAO.deleteQuestion(id);
+    }
+
+    public void deleteQuestionByQuizId(int quizId) {
+        questionDAO.deleteQuestionByQuizId(quizId);
     }
 }

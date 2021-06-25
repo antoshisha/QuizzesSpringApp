@@ -16,8 +16,10 @@ public class QuizDAOImpl implements QuizDAO {
 
     @Override
     public void createQuiz(Quiz quiz) {
-        Connection conn = connectionDB.getConnection();
+//        Connection conn = connectionDB.getConnection();
+
         try{
+            Connection conn = HikariCPDataSource.getConnection();
             PreparedStatement preparedStatement = conn.prepareStatement(
                     "INSERT INTO " + "quiz (name, start, finish, description) VALUES (?,?,?,?)");
             //preparedStatement.setInt(1, quiz.getId());
@@ -28,18 +30,18 @@ public class QuizDAOImpl implements QuizDAO {
             preparedStatement.executeUpdate();
         } catch (SQLException throwable) {
             throwable.printStackTrace();
-            try {
-                conn.close();
-                System.out.println("----INSERT QUERY IS NOT APPLIED---");
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        }
-        try {
-            conn.close();
-            System.out.println("----INSERT QUERY IS SUCCESSFUL---");
-        } catch (SQLException e) {
-            e.printStackTrace();
+//            try {
+//                conn.close();
+//                System.out.println("----INSERT QUERY IS NOT APPLIED---");
+//            } catch (SQLException e) {
+//                e.printStackTrace();
+//            }
+//        }
+//        try {
+//            conn.close();
+//            System.out.println("----INSERT QUERY IS SUCCESSFUL---");
+//        } catch (SQLException e) {
+//            e.printStackTrace();
         }
     }
 

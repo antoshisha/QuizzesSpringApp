@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html"
-      xmlns="http://www.w3.org/1999/html">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
     <title>Delete Quiz</title>
@@ -8,11 +7,13 @@
 <body>
 Please enter the ID of the quiz which you want to delete:
 </br>
+</br>
+
 <form th:method="POST" th:action="@{/quizzes/deleteQuiz}" th:object="${quiz}">
     <label for="id">Enter ID:</label>
 <input type="number" th:field="*{id}" id="id">
     </br>
-    <input type="text" value="DELETE!"/>
+    <input type="submit" value="DELETE!"/>
 </form>
 </body>
 </html>

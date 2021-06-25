@@ -1,12 +1,14 @@
 package ru.entity;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Question {
     Integer id;
     String name;
+    int quizId;
     QuestionType questionType;
-    List<QuestionOption> questionOptions;
+    List<QuestionOption> questionOptions =new ArrayList<>(4);
 
 
     public Question(int id, String name, QuestionType questionType, List<QuestionOption> questionOptions) {
@@ -41,19 +43,34 @@ public class Question {
         this.name = name;
     }
 
+    public int getQuizId() {
+        return quizId;
+    }
+
+    public void setQuizId(int quizId) {
+        this.quizId = quizId;
+    }
+
     public QuestionType getQuestionType() {
         return questionType;
     }
 
-    public void setQuestionType(QuestionType questionType) {
-        this.questionType = questionType;
+    public void setQuestionType(String questionType) {
+        this.questionType = QuestionType.valueOf(questionType);
     }
 
-    public List<QuestionOption> getAnswerForQuestionList() {
+    public List<QuestionOption> getQuestionOptions() {
         return questionOptions;
     }
 
-    public void setAnswerForQuestionList(List<QuestionOption> questionOptions) {
+    public void setQuestionOptions(List<QuestionOption> questionOptions) {
         this.questionOptions = questionOptions;
     }
+
+    public void addQuestionOption(QuestionOption questionOption) {
+        this.questionOptions.add(questionOption);
+    }
+
+
+
 }

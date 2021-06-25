@@ -1,6 +1,8 @@
 package ru.service;
 
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 import ru.dao.QuestionDAOImpl;
 import ru.dao.QuestionOptionDAOImpl;
 import ru.dao.QuizDAOImpl;
@@ -23,15 +25,14 @@ public class QuizService {
         this.questionOptionDAO = questionOptionDAO;
     }
 
-
+    @Transactional(rollbackFor = RuntimeException.class, propagation = Propagation.REQUIRED)
     public void createQuiz(Quiz quiz) {
         quizDAO.createQuiz(quiz);
-//        List<Question> questionList = quiz.getQuestionList();
-//        questionDAO.batchCreateQuestions(questionList, quiz.getId());
-//        for (Question question : questionList) {
-//            List<QuestionOption> questionOptionList =question.getAnswerForQuestionList();
-//            questionOptionDAO.batchCreateQuestionOptions(questionOptionList);
-//        }
+        getException();
+
+    }
+    public void getException() {
+        throw new RuntimeException();
     }
 
     public void updateQuiz(Quiz quiz) {
@@ -45,7 +46,7 @@ public class QuizService {
             } else {
                 updateQuestions.add(question);
             }
-            List<QuestionOption> questionOptionList = question.getAnswerForQuestionList();
+            List<QuestionOption> questionOptionList = question.getQuestionOptions();
             List<QuestionOption> createQuestionOptions = new ArrayList<>();
             List<QuestionOption> updateQuestionOptions = new ArrayList<>();
             for (QuestionOption x : questionOptionList) {
