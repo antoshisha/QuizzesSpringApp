@@ -128,17 +128,19 @@ public class QuizDAOImpl implements QuizDAO {
             PreparedStatement preparedStatement = connection.prepareStatement(
                     "SELECT * FROM user_past_quizzes WHERE user_id = ?");
             preparedStatement.setInt(1, userId);
-            ResultSet resultSet = preparedStatement.getResultSet();
+            ResultSet resultSet = preparedStatement.executeQuery();
             List<Integer> quizzesId = new ArrayList<>();
-            while (resultSet.next()) quizzesId.add(resultSet.getInt(1));
+            while (resultSet.next()) quizzesId.add(resultSet.getInt(2));
             preparedStatement.close();
             for (Integer x : quizzesId) {
                 PreparedStatement preparedStatement2 = connection.prepareStatement(
                         "SELECT * FROM quiz WHERE id = ?");
-                preparedStatement.setInt(1, x);
-                ResultSet rs = preparedStatement2.getResultSet();
-                userPastQuizzes.add(new Quiz(rs.getInt(1), rs.getString(2),
-                        rs.getDate(3), rs.getDate(4), rs.getString(5)));
+                preparedStatement2.setInt(1, x);
+                ResultSet rs = preparedStatement2.executeQuery();
+                while (rs.next()) {
+                    userPastQuizzes.add(new Quiz(rs.getInt(1), rs.getString(2),
+                            rs.getDate(3), rs.getDate(4), rs.getString(5)));
+                }
             }
         } catch (SQLException throwables) {
             throwables.printStackTrace();
@@ -155,4 +157,39 @@ public class QuizDAOImpl implements QuizDAO {
         }
         return userPastQuizzes;
     }
+
+    @Override
+    public Quiz getQuiz(int quizId) {
+        Connection connection = connectionDB.getConnection();
+        Quiz quiz = new Quiz();
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(
+                    "SELECT * FROM quiz WHERE id = ?");
+            preparedStatement.setInt(1, quizId);
+            ResultSet rs = preparedStatement.executeQuery();
+            while (rs.next()) {
+                quiz.setId(rs.getInt(1));
+                quiz.setName(rs.getString(2));
+                quiz.setStartDate(rs.getDate(3));
+                quiz.setFinishDate(rs.getDate(4));
+                quiz.setDescription(rs.getString(5));
+            }
+            preparedStatement.close();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+            try {
+                connection.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        try {
+            connection.close();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return quiz;
+    }
+
+
 }

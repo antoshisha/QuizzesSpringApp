@@ -11,4 +11,5 @@ public interface QuestionOptionDAO {
     void batchCreateQuestionOptions(List<QuestionOption> questionOptionList);
     void batchUpdateQuestionOptions(List<QuestionOption> questionOptionList);
     void batchDeleteQuestionOptions(List<QuestionOption> questionOptionList);
+    List<QuestionOption> getOptionsForQuestion(int questionId);
 }

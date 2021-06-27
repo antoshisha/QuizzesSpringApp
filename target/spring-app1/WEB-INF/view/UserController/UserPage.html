@@ -1,10 +1,20 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
     <title>User Page</title>
 </head>
 <body>
-Please choose action:
+<h1>Please choose your action:</h1>
+<div>
+    <a th:href="@{/quizzes/getAll}"> GET ALL ACTIVE QUIZZES</a>
+    </br>
+    <a th:href="@{/quizzes/getQuizzesForUserId/}">GET THE PASSED QUIZZES BY USER ID</a>
+    </br>
+    <a th:href="@{/quizzes/takeQuiz}"> TAKE QUIZ!</a>
+    </br>
+    </br>
+    <a th:href="@{/QuizApp/}">GO TO HOMEPAGE</a>
+</div>
 </body>
 </html>

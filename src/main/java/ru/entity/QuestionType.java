@@ -1,9 +1,9 @@
 package ru.entity;
 
 public enum QuestionType {
-    TEXT_ANSWER("TEXT_ANSWER"),
-    ONE_CHOICE("ONE_CHOICE"),
-    MULTIPLE_CHOICE("MULTIPLE_CHOICE");
+    TEXT_ANSWER("1"),
+    ONE_CHOICE("2"),
+    MULTIPLE_CHOICE("3");
 
     private final String displayValue;
 

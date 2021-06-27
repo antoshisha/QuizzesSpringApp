@@ -53,4 +53,12 @@ public class QuestionService {
     public void deleteQuestionByQuizId(int quizId) {
         questionDAO.deleteQuestionByQuizId(quizId);
     }
+
+    public List<Question> getAllQuestions() {
+        return questionDAO.getAllQuestions();
+    }
+
+    public Question getQuestion(int questionId) {
+       return questionDAO.getQuestion(questionId);
+    }
 }

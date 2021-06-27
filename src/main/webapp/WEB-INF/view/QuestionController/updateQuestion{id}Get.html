@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>New Question</title>
+</head>
+<body>
+<form action="#" th:action="@{/questions/updateQuestion/}" th:object="${question}"
+      method="post">
+    <fieldset>
+        <label for="name">Enter name: </label>
+        <input type="text" th:field="*{name}" id="name">
+        <br/>
+        <label for="start"> Quiz ID: </label>
+        <input type="number" th:field="*{quizId}" id="start">
+        <br/>
+        <label for="questionType">Question Type: </label>
+        <select name="questionType" th:field="*{questionType}" id="questionType">
+            <option th:each="type : ${T(ru.entity.QuestionType).values()}"
+                    th:value="${type}" th:text="${type}">
+            </option>
+        </select>
+        <br/>
+        <table>
+            <thead>
+            <tr>
+                <th> QuestionOptions: </th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="questionOption, itemStat : *{questionOptions}">
+                <td><input th:field="*{questionOptions[__${itemStat.index}__].option}" /></td>
+            </tr>
+            </tbody>
+        </table>
+    </fieldset>
+    <input type="submit" id="submitButton" th:value="Save">
+    <input type="reset" id="resetButton" name="reset" th:value="Reset"/>
+</form>
+
+</body>
+</html>

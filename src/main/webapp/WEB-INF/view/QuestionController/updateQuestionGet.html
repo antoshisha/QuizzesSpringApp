@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Question update page</title>
+</head>
+<body>
+<h1>Please choose Question for update:</h1>
+<div th:each="question : ${questions}">
+
+    <a th:href="@{/qestions/updateQuestion/{id}(id=${question.getId()})}" th:text="${question.getName()}">user</a>
+    <hr/>
+    <!--  <a th:href="@{/quizzes/getAll}"> Take quiz by your ID</a> or <a th:href="@{/quizzes/getQuizzesForUserId/}">Take quiz anonymously</a>-->
+</div>
+<br/>
+<hr/>
+</body>
+</html>

@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Take the quiz!</title>
+</head>
+<body>
+<h1>Please choose Quiz:</h1>
+<div th:each="quiz : ${quizzes}">
+
+    <a th:href="@{/quizzes/takeQuiz/{id}(id=${quiz.getId()})}" th:text="${quiz.getName()}">user</a>
+    <hr/>
+    <!--  <a th:href="@{/quizzes/getAll}"> Take quiz by your ID</a> or <a th:href="@{/quizzes/getQuizzesForUserId/}">Take quiz anonymously</a>-->
+</div>
+<br/>
+<hr/>
+</body>
+</html>

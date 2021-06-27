@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
     <title>Index</title>
@@ -7,14 +7,10 @@
 <body>
 
 <div th:each="quiz : ${quizzes}">
-    <a
-            th:text="${'Quiz id: ' + quiz.id + ', start date is: ' + quiz.startDate + ', Quiz name: ' + quiz.name + ', Quiz description: ' + quiz.description}">user</a>
-
+    <a th:text="${'Quiz id: ' + quiz.id + '; start date is: ' + quiz.startDate + '; Quiz name: ' + quiz.name + '; Quiz description: ' + quiz.description}">user</a>
+    <hr/>
 </div>
-
-<br/>
-<hr/>
-
-
+</br>
+<a th:href="@{/QuizApp/}">GO TO HOMEPAGE</a>
 </body>
 </html>

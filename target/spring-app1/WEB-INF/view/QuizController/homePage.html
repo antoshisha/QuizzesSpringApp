@@ -1,14 +1,21 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
     <title>Home Page QuizApp</title>
 </head>
 <body>
- Choose your action:
- ----------------------
+<h1> Choose your action:</h1>
+</hr>
 <div>
-    <a th:href="@{/quizzes/createQuiz}"> CREATE QUIZ </a> or <a th:href="@{/}">UPDATE QUIZ</a> or <a th:href="@{/quizzes/deleteQuiz}">DELETE QUIZ</a>
+    <a th:href="@{/quizzes/createQuiz}"> CREATE QUIZ </a>
+    </br>
+    <a th:href="@{/}">UPDATE QUIZ</a>
+    </br>
+    <a th:href="@{/quizzes/deleteQuiz}">DELETE QUIZ</a>
+    </br>
+    </br>
+    <a th:href="@{/QuizApp/}">GO TO HOMEPAGE</a>
 </div>
 </body>
 </html>

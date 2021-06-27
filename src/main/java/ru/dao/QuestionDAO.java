@@ -11,4 +11,7 @@ public interface QuestionDAO {
     void deleteQuestionByQuizId(int quizId);
     void batchCreateQuestions(List<Question> questionList, int quizId);
     void batchUpdateQuestions(List<Question> questionList, int quizId);
+    List<Question> getQuestionsForQuizId(int quizId);
+    List<Question> getAllQuestions();
+    Question getQuestion(int questionId);
 }

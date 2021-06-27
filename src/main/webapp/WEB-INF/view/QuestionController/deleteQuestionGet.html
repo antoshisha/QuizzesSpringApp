@@ -5,12 +5,12 @@
     <title>Delete Quiz</title>
 </head>
 <body>
-<h3>Please enter the ID of the quiz which you want to delete:</h3>
+<h3>Please enter the ID of the question which you want to delete:</h3>
 </br>
 
-<form th:method="POST" th:action="@{/quizzes/deleteQuiz}" th:object="${quiz}">
+<form th:method="POST" th:action="@{/questions/deleteQuiz}" th:object="${question}">
     <label for="id">Enter ID:</label>
-<input type="number" th:field="*{id}" id="id">
+    <input type="number" th:field="*{id}" id="id">
     </br>
     <input type="submit" value="DELETE!"/>
 </form>

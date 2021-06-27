@@ -7,14 +7,12 @@
 <body>
 
 <div th:each="quiz : ${quizzes}">
-    <a
-       th:text="${'Quiz id: ' + quiz.id + ', start date is: ' + quiz.startDate + ', Quiz name: ' + quiz.name + ', Quiz description: ' + quiz.description}">user</a>
 
+    <a th:href="@{/quizzes/{id}(id=${quiz.getId()})}" th:text="${quiz.getName()}">user</a>
+    <a th:text="${'Quiz id: ' + quiz.id + '; start date is: ' + quiz.startDate + '; Quiz name: ' + quiz.name + '; Quiz description: ' + quiz.description}">user</a>
+    <hr/>
 </div>
-
-<br/>
-<hr/>
-
-
+</br>
+<a th:href="@{/QuizApp/}">GO TO HOMEPAGE</a>
 </body>
 </html>

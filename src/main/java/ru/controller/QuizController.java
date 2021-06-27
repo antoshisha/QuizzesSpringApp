@@ -4,6 +4,8 @@ package ru.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import ru.entity.Question;
+import ru.entity.QuestionOption;
 import ru.entity.Quiz;
 import ru.entity.User;
 import ru.service.QuestionService;
@@ -41,8 +43,9 @@ public class QuizController {
     }
 
     @PostMapping("getQuizzesForUserId")
-    public String getQuizzesForUserIdPost(@ModelAttribute("user") User user, @ModelAttribute("quizzes") List<Quiz> quizzes) {
-        quizzes = quizService.getQuizForUserId(user.getId());
+    public String getQuizzesForUserIdPost(@ModelAttribute("user") User user, Model model) {
+        List<Quiz> quizzes = quizService.getQuizForUserId(user.getId());
+        model.addAttribute("quizzes", quizzes);
         for (Quiz z: quizzes) {
             System.out.println(z.getName());
         }
@@ -82,4 +85,19 @@ public class QuizController {
     public String updateQuiz() {
         return "updateQuiz";
     }
+
+    @GetMapping("/takeQuiz")
+    public String takeQuiz(Model model) {
+        List<Quiz> list = quizService.getAll();
+        model.addAttribute("quizzes", list);
+        return "/QuizController/takeQuizGet";
+    }
+
+    @GetMapping("/takeQuiz/{id}")
+    public String show(@PathVariable("id") int id, Model model) {
+        Quiz quiz = quizService.takeQuiz(id);
+        model.addAttribute("quiz", quiz);
+        return "/QuizController/takeQuiz{id}";
+    }
+
 }

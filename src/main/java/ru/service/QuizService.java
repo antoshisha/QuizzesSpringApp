@@ -25,14 +25,8 @@ public class QuizService {
         this.questionOptionDAO = questionOptionDAO;
     }
 
-    @Transactional(rollbackFor = RuntimeException.class, propagation = Propagation.REQUIRED)
     public void createQuiz(Quiz quiz) {
         quizDAO.createQuiz(quiz);
-        getException();
-
-    }
-    public void getException() {
-        throw new RuntimeException();
     }
 
     public void updateQuiz(Quiz quiz) {
@@ -75,12 +69,20 @@ public class QuizService {
 
     }
     public List<Quiz> getQuizForUserId(int userId) {
-        List<Quiz> quizList = quizDAO.getQuizForUserId(userId);
-        return quizList;
+        return quizDAO.getQuizForUserId(userId);
     }
     public List<Quiz> getAll() {
         return quizDAO.getAll();
     }
 
+    public Quiz takeQuiz(int quizId) {
+        List<Question> questions = questionDAO.getQuestionsForQuizId(quizId);
+        for (Question x : questions) {
+           x.setQuestionOptions(questionOptionDAO.getOptionsForQuestion(x.getId()));
+        }
+        Quiz quiz = quizDAO.getQuiz(quizId);
+        quiz.setQuestionList(questions);
+        return quiz;
+    }
 
 }
