@@ -1,11 +1,10 @@
 package ru.service;
 
 import org.springframework.stereotype.Component;
-import org.springframework.transaction.annotation.Propagation;
-import org.springframework.transaction.annotation.Transactional;
 import ru.dao.QuestionDAOImpl;
 import ru.dao.QuestionOptionDAOImpl;
 import ru.dao.QuizDAOImpl;
+import ru.dto.UserQuestionAnswerDTO;
 import ru.entity.Question;
 import ru.entity.QuestionOption;
 import ru.entity.Quiz;

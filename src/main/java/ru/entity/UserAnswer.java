@@ -18,6 +18,10 @@ public class UserAnswer {
         this.questionOptionId = questionOptionId;
     }
 
+    public UserAnswer() {
+
+    }
+
     public int getUserAnswerId() {
         return userAnswerId;
     }

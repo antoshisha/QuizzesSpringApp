@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>New Quiz</title>
+</head>
+<body>
+
+<form th:method="PATCH" th:action="@{/quizzes/updateQuiz}" th:object="${quiz}">
+    <input type="hidden" th:field="${quiz.id}" th:attr="name='quiz.id'" />
+    <label for="name">Enter quiz name: </label>
+    <input type="text" th:field="*{name}" id="name">
+    <br/>
+    <label for="start">Enter start date: </label>
+    <input type="date" th:field="*{startDate}" id="start">
+    <br/>
+    <label for="finish">Enter finish date: </label>
+    <input type="date" th:field="*{finishDate}" id="finish">
+    <br/>
+    <label for="description">Enter description: </label>
+    <input type="text" th:field="*{description}" id="description">
+    <br/>
+    <br/>
+    <th:block th:each="question, iteration : ${quiz.questionList}">
+        <td>
+        <hr/>
+        <label for="questionName">Enter question name: </label>
+        <input  type="text"  th:field="*{questionList[__${iteration.index}__].name}" id="questionName"/>
+            <input type="hidden" th:field="*{questionList[__${iteration.index}__].id}" th:attr="name='question.id'" />
+            <th:block th:switch="*{questionList[__${iteration.index}__].questionType.name()}">
+                <div th:case="'TEXT_ANSWER'">
+                    <th:text>Question type: TEXT_ANSWER</th:text>
+                    <hr/>
+                    </br>
+                </div>
+                <div th:case="'ONE_CHOICE'">
+                    <th:text>Question type: ONE_CHOICE</th:text>
+                </div>
+                <div th:case="'MULTIPLE_CHOICE'">
+                    <th:text>Question type: MULTIPLE_CHOICE</th:text>
+                </div>
+            </th:block>
+        </td>
+
+        <div th:unless="${quiz.questionList[__${iteration.index}__].questionType.name()} == 'TEXT_ANSWER'">
+            <th:text>Question Options:</th:text>
+            </br>
+        <td>
+         <span th:each="questionOption, iteration2 : ${question.questionOptions}">
+              <input type="text" th:field="*{questionList[__${iteration.index}__].questionOptions[__${iteration2.index}__].option}"/>
+             <input type="hidden" th:field="*{questionList[__${iteration.index}__].questionOptions[__${iteration2.index}__].id}" th:attr="name='questionOption.id'" />
+             <br/>
+         </span>
+        </td>
+        </div>
+
+    </th:block>
+    <br/>
+    <input type="submit" value="Update!"/>
+</form>
+</body>
+</html>
