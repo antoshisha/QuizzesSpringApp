@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form th:method="POST" th:action="@{/quizzes/takeQuiz}" th:object="${userQuestionAnswerDTO}">
+
+    <th:block th:each="question, iter : ${userQuestionAnswerDTO.questionList}">
+        <hr/>
+        <label for="id">Question id: </label>
+        <td th:text="${question.id}" id="id"></td>
+        </br>
+        <label for="name">Question name:</label>
+        <td th:text="${question.name}" id="name"></td>
+
+        </br>
+            <div th:if="${question.questionType.name()} == 'TEXT_ANSWER'">
+                <label for="answer">Enter your answer: </label>
+                <input type="text"  th:field="*{textList}" id="answer" name="answer">
+                <input type="hidden" th:value="${question.id}" th:attr="name='idListForTextAnswer'" />
+            </div>
+            <div th:if="${question.questionType.name()} == 'MULTIPLE_CHOICE'">
+            <table>
+                <tr th:each="questionOption : ${question.questionOptions}">
+                <td><input type="checkbox" th:field="*{list}" th:value="${questionOption.id}">
+                <label th:text="${questionOption.option}"/></td>
+                </tr>
+                </br>
+            </table>
+            </div>
+        <div th:if="${question.questionType.name()} == 'ONE_CHOICE'">
+            <table>
+                <tr th:each="questionOption : ${question.questionOptions}">
+                    <td><input type="radio" th:field="*{list}" th:value="${questionOption.id}">
+                        <label th:text="${questionOption.option}"/></td>
+                </tr>
+                </br>
+            </table>
+        </div>
+
+    </th:block>
+
+    </table>
+    <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
+</form>
+</body>
+</html>

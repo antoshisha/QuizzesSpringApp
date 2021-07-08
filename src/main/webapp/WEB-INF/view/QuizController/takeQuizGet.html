@@ -5,7 +5,10 @@
     <title>Take the quiz!</title>
 </head>
 <body>
-<h1>Please choose Quiz:</h1>
+<h3>You can take quiz anonymously or you can </h3>
+<a th:href="@{/login/}">log in</a>
+</hr>
+<h2>Please choose Quiz:</h2>
 <div th:each="quiz : ${quizzes}">
 
     <a th:href="@{/quizzes/takeQuiz/{id}(id=${quiz.getId()})}" th:text="${quiz.getName()}">user</a>

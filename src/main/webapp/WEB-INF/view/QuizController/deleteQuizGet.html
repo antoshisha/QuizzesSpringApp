@@ -7,12 +7,21 @@
 <body>
 <h3>Please enter the ID of the quiz which you want to delete:</h3>
 </br>
-
-<form th:method="POST" th:action="@{/quizzes/deleteQuiz}" th:object="${quiz}">
+<form th:method="POST" th:action="@{/quizzes/deleteQuiz}" th:object="${quizz}">
     <label for="id">Enter ID:</label>
 <input type="number" th:field="*{id}" id="id">
     </br>
     <input type="submit" value="DELETE!"/>
+    </hr>
 </form>
+</hr>
+</br>
+<h4>List of active quizzes:</h4>
+<div th:each="quiz : ${quizzes}">
+    <a th:text="${'Quiz id: ' + quiz.id + '; start date is: ' + quiz.startDate + '; Quiz name: ' + quiz.name + '; Quiz description: ' + quiz.description}">user</a>
+    <hr/>
+</div>
+</br>
+<a th:href="@{/QuizApp/}">GO TO HOMEPAGE</a>
 </body>
 </html>

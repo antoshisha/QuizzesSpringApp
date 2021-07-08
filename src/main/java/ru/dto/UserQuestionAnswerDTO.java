@@ -4,10 +4,7 @@ import org.springframework.stereotype.Component;
 import ru.entity.Question;
 import ru.entity.UserAnswer;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class UserQuestionAnswerDTO {
     List<Question> questionList;
@@ -15,6 +12,7 @@ public class UserQuestionAnswerDTO {
     List<String> list;
     List<String> textList;
     List<Integer> idListForTextAnswer;
+    Map<Question, List<UserAnswer>> answers = new LinkedHashMap<>();
 
 
     public List<String> getTextList() {
@@ -41,13 +39,20 @@ public class UserQuestionAnswerDTO {
         this.list = list;
     }
 
+    public Map<Question, List<UserAnswer>> getAnswers() {
+        return answers;
+    }
+
+    public void setAnswers(Map<Question, List<UserAnswer>> answers) {
+        this.answers = answers;
+    }
+
     public UserQuestionAnswerDTO () {
         questionList = new ArrayList<>();
         userAnswerList = new ArrayList<>();
         list = new ArrayList<>();
         textList = new ArrayList<>();
         idListForTextAnswer = new ArrayList<>();
-
     }
 
     public void addQuestion(Question question) {

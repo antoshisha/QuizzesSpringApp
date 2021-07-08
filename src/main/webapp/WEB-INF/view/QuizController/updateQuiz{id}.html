@@ -49,6 +49,7 @@
          <span th:each="questionOption, iteration2 : ${question.questionOptions}">
               <input type="text" th:field="*{questionList[__${iteration.index}__].questionOptions[__${iteration2.index}__].option}"/>
              <input type="hidden" th:field="*{questionList[__${iteration.index}__].questionOptions[__${iteration2.index}__].id}" th:attr="name='questionOption.id'" />
+             <input type="hidden" th:field="*{questionList[__${iteration.index}__].questionOptions[__${iteration2.index}__].questionId}" th:attr="name='questionOption.questionId'" />
              <br/>
          </span>
         </td>

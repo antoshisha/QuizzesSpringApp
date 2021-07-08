@@ -9,6 +9,26 @@ public class UserAnswer {
     int questionId;
     String text;
     int questionOptionId;
+    String questionOption;
+
+    public String getQuestionOption() {
+        return questionOption;
+    }
+
+    public void setQuestionOption(String questionOption) {
+        this.questionOption = questionOption;
+    }
+
+
+
+    public UserAnswer(int userAnswerId, int userId, int questionId, String text, int questionOptionId, String questionOption) {
+        this.userAnswerId = userAnswerId;
+        this.userId = userId;
+        this.questionId = questionId;
+        this.text = text;
+        this.questionOptionId = questionOptionId;
+        this.questionOption = questionOption;
+    }
 
     public UserAnswer(int userAnswerId, int userId, int questionId, String text, int questionOptionId) {
         this.userAnswerId = userAnswerId;

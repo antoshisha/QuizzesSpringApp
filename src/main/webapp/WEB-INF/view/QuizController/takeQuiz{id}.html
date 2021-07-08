@@ -2,42 +2,27 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Take Quiz</title>
 </head>
 <body>
 <form th:method="POST" th:action="@{/quizzes/takeQuiz}" th:object="${userQuestionAnswerDTO}">
-
-    <th:block th:each="question, iter : ${userQuestionAnswerDTO.questionList}">
-        <hr/>
-        <td th:text="${question.name}"></td>
-        </br>
-            <div th:if="${question.questionType.name()} == 'TEXT_ANSWER'">
-                <label for="answer">Enter your answer: </label>
-                <input type="text"  th:field="*{textList}" id="answer" name="answer">
-                <input type="hidden" th:value="${question.id}" th:attr="name='idListForTextAnswer'" />
-            </div>
-            <div th:if="${question.questionType.name()} == 'MULTIPLE_CHOICE'">
+    <th:block th:each="entry, stats : *{userQuestionAnswerDTO.answers}">
+            <td th:text="${entry.key.name}"></td>
+        <td>
+<!--            <table>-->
+<!--                <tr th:each="value : ${entry.value}">-->
+<!--                    <td th:text="${value.questionOption}"></td>-->
+<!--                </tr>-->
+<!--            </table>-->
             <table>
-                <tr th:each="questionOption : ${question.questionOptions}">
-                <td><input type="checkbox" th:field="*{list}" th:value="|${question.id}-${questionOption.id}|">
-                <label th:text="${questionOption.option}"/></td>
+                <tr th:each="value, stat : *{entry.value}">
+                    <td><input type="checkbox" th:field="*{entry[__${stats.index}__].value[__${stat.index}__]}">
+                        <label th:text="${value.questionOption}"></label></td>
                 </tr>
                 </br>
             </table>
-            </div>
-        <div th:if="${question.questionType.name()} == 'ONE_CHOICE'">
-            <table>
-                <tr th:each="questionOption : ${question.questionOptions}">
-                    <td><input type="radio" th:field="*{list}" th:value="|${question.id}-${questionOption.id}|">
-                        <label th:text="${questionOption.option}"/></td>
-                </tr>
-                </br>
-            </table>
-        </div>
-
+        </td>
     </th:block>
-
-    </table>
     <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
 </form>
 </body>

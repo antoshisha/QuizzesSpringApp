@@ -154,12 +154,11 @@ public class QuestionDAOImpl implements QuestionDAO {
         Connection connection = connectionDB.getConnection();
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(
-                    "UPDATE question SET name= ?, quiz_id= ?, type= ? WHERE id= ?");
+                    "UPDATE question SET name= ?, quiz_id= ?  WHERE id= ?");
             for (Question question: questionList) {
                 preparedStatement.setString(1, question.getName());
                 preparedStatement.setInt(2, quizId);
-                preparedStatement.setInt(3, question.getQuestionType().ordinal() + 1);
-                preparedStatement.setInt(4, question.getId());
+                preparedStatement.setInt(3, question.getId());
                 preparedStatement.addBatch();
             }
             preparedStatement.executeBatch();

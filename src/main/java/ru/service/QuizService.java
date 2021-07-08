@@ -31,35 +31,13 @@ public class QuizService {
     public void updateQuiz(Quiz quiz) {
         quizDAO.updateQuiz(quiz);
         List<Question> questionList = quiz.getQuestionList();
-        List<Question> createQuestions = new ArrayList<>();
-        List<Question> updateQuestions = new ArrayList<>();
-        for (Question question: questionList) {
-            if (question.getId() == null) {
-                createQuestions.add(question);
-            } else {
-                updateQuestions.add(question);
-            }
-            List<QuestionOption> questionOptionList = question.getQuestionOptions();
-            List<QuestionOption> createQuestionOptions = new ArrayList<>();
-            List<QuestionOption> updateQuestionOptions = new ArrayList<>();
-            for (QuestionOption x : questionOptionList) {
-                if (x.getId() == null) {
-                    createQuestionOptions.add(x);
-                } else {
-                    updateQuestionOptions.add(x);
-                }
-            }
-            if (!updateQuestionOptions.isEmpty())
-                questionOptionDAO.batchUpdateQuestionOptions(updateQuestionOptions);
-
-            if (!createQuestionOptions.isEmpty())
-                questionOptionDAO.batchCreateQuestionOptions(createQuestionOptions);
+        questionDAO.batchUpdateQuestions(questionList, quiz.getId());
+        List<QuestionOption> updateQuestionOptions = new ArrayList<>();
+        for (Question q : questionList) {
+            List<QuestionOption> options = q.getQuestionOptions();
+            updateQuestionOptions.addAll(options);
         }
-        if (!createQuestions.isEmpty())
-            questionDAO.batchCreateQuestions(createQuestions, quiz.getId());
-
-        if (!updateQuestions.isEmpty())
-            questionDAO.batchUpdateQuestions(updateQuestions, quiz.getId());
+        questionOptionDAO.batchUpdateQuestionOptions(updateQuestionOptions);
 
     }
     public void deleteQuiz(int quizId) {
